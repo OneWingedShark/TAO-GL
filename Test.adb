@@ -4,7 +4,7 @@ With
 TAO_GL,
 TAO_GL.Types,
 TAO_GL.Functions,
-GLUT,
+TAO_GL.Utility_Toolkit,
 Ada.Numerics.Generic_Elementary_Functions,
 Ada.Unchecked_Conversion;
 
@@ -138,6 +138,7 @@ Procedure Test is
     procedure glColor3f (r,g,b : TAO_GL.Types.float)
       renames TAO_GL.Functions.Color;
 
+    package glut renames tao_gl.Utility_Toolkit.Functions;
 
     -- Displays a green/Red/Gray color-wheel.
     Procedure Display is
@@ -173,7 +174,7 @@ Procedure Test is
 	end loop;
 	glEnd;
 
-	glut.SwapBuffers;
+	glut.Swap_Buffers;
     end Display;
 
     -- Renders a white square on a black background.
@@ -195,7 +196,7 @@ Procedure Test is
 	glEnd;
 
 	--Update screen
-	GLUT.SwapBuffers;
+	GLUT.Swap_Buffers;
     end Render;
 
 --  void main(int argc, char** argv) {
@@ -208,19 +209,20 @@ Procedure Test is
 --  glutMainLoop();
 --  }
 
-    Void : Integer:= 0;
+    Void : TAO_GL.Types.Integer:= 0;
 
     Use GLUT;
+    Use Type TAO_GL.Types.Unsigned_Integer;
 begin
     glut.Init; --(&argc, argv);
-    glut.InitDisplayMode(GLUT.RGB or GLUT.DOUBLE);
-    glut.InitWindowSize(512, 512);
-    glut.InitWindowPosition(20, 20);
-    Void:= glut.CreateWindow("tecnun");
-    glut.DisplayFunc( Display'Address);
+    glut.Init_Display_Mode(TAO_GL.Utility_Toolkit.RGB or TAO_GL.Utility_Toolkit.DOUBLE);
+    glut.Init_Window_Size(512, 512);
+    glut.Init_Window_Position(20, 20);
+    Void:= glut.Create_Window("tecnun");
+    glut.Display_Function( Convert(Display'Address) );
 
 Ada.Text_IO.Put_Line("Write, before main-loop.");
-    glut.MainLoop;
+    glut.Main_Loop;
 
     Ada.Text_IO.Put_Line("Write, after main-loop.");
     --LeaveMainLoop
