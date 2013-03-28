@@ -1110,6 +1110,52 @@ procedure InterleavedArrays (	format	: Array_Format_Type;
 				stride	: Types.Size;
 				pointer	: System.Address);
 
+-- VERSION 4.3 MARK
+--  procedure ActiveTexture( Texture : Texture_Number );
+--
+--  procedure AttachShader(program, shader : Unsigned_Integer)
+--  	with pre => Not Executing;
+--
+--  procedure BeginQuery(Target : Query_Target; ID : Unsigned_Integer)
+--  	with pre => Not Executing and ID /= 0;
+--
+--  procedure BindAttribLocation(	Program,  Index	: Unsigned_Integer;
+--  				Name		: String)
+--  	with pre => Not Executing and Name(Name'First..Name'First+3) /= "gl_";
+--
+--  procedure BindBuffer(Target : Buffers; Buffer  : Unsigned_Integer);
+--
+--  procedure BlendColor(Red, Green, Blue, Alpha : Types.Float);
+--
+--  procedure BlendEquation(mode : Blend_Type);
+--
+--  procedure BlendEquation(mode : Blend_Type; buffer : Drawing_Buffer_Number);
+--
+--  procedure BlendEquationSeparate(Mode_RGB, Mode_Alpha : Blend_Type);
+--
+--  procedure BlendEquationSeparate(Mode_RGB, Mode_Alpha : Blend_Type; Buffer : Drawing_Buffer_Number);
+--
+--  procedure glBlendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha : Scale_Factor);
+--
+--  procedure glBlendFuncSeparatei(buffer : Unsigned_Integer; srcRGB, dstRGB, srcAlpha, dstAlpha : Scale_Factor);
+--
+--  procedure BufferData(target : Buffers; usage : Usage_Pattern; size : Types.Size; data : System.Address:= System.Null_Address);
+--
+--  procedure BufferSubData(Target : Buffers; Offset : Types.Size; Size : Access Types.Size; Data : System.Address);
+--
+--  procedure glColorMask(red, green, blue, alpha : Types.Boolean);
+--
+--  procedure glColorMask(Buffer : Drawing_Buffer_Number; Red, Green, Blue, Alpha : Types.Boolean);
+--
+
+
+
+
+
+
+--	with pre => Not Executing;
+--Buffers
+
 Private
 
 	OpenGL_Executing : Standard.Boolean := False;

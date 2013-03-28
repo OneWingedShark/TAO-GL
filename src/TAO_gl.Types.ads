@@ -1,6 +1,8 @@
-Package TAO_GL.Types is
+Package TAO_GL.Types with Pure is
 
-    Pragma Pure;
+    -- stubs; need to be moved into parameters of generic.
+    Maximum_Draw_Buffers			: Constant:= 8;
+
 
 --------------------------------------------------------------------------------
 ----   BASIC TPYES	OPEN-GL DEFINED ELEMENTARY TYPES (SANS ARRAYS).     ----
@@ -14,6 +16,7 @@ Package TAO_GL.Types is
 	with Size => 8;
     Type Byte		is new Interfaces.Integer_8;
     Type Unsigned_Byte	is new Interfaces.Unsigned_8;
+    Type Character	is new Standard.Character;
 
     --------------------
     --  16-BIT TYPES  --
@@ -949,6 +952,43 @@ Package Constants is
     GL_SRGB_ALPHA				: constant :=	16#8C42#;
     GL_SRGB8_ALPHA8				: constant :=	16#8C43#;
 
+	GL_TEXTURE0				: Constant :=	16#84C0#;
+	GL_ARRAY_BUFFER				: Constant :=	16#8892#;
+	GL_ELEMENT_ARRAY_BUFFER			: Constant :=	16#8893#;
+	GL_PIXEL_PACK_BUFFER			: Constant :=	16#88EB#;
+	GL_PIXEL_UNPACK_BUFFER			: Constant :=	16#88EC#;
+	GL_SAMPLES_PASSED			: Constant :=	16#8914#;
+	GL_ANY_SAMPLES_PASSED			: Constant :=	16#8C2F#;
+	GL_ANY_SAMPLES_PASSED_CONSERVATIVE	: Constant :=	16#8D6A#;
+	GL_PRIMITIVES_GENERATED			: Constant :=	16#8C87#;
+	GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN: Constant :=	16#8C88#;
+	GL_TIME_ELAPSED				: Constant :=	16#88BF#;
+	GL_ATOMIC_COUNTER_BUFFER		: Constant :=	16#92C0#;
+	GL_COPY_READ_BUFFER			: Constant :=	16#8F36#;
+	GL_COPY_WRITE_BUFFER			: Constant :=	16#8F37#;
+	GL_DRAW_INDIRECT_BUFFER			: Constant :=	16#8F3F#;
+	GL_DISPATCH_INDIRECT_BUFFER		: Constant :=	16#90EE#;
+	GL_SHADER_STORAGE_BUFFER		: Constant :=	16#90D2#;
+	GL_TEXTURE_BUFFER			: Constant :=	16#8C2A#;
+	GL_TRANSFORM_FEEDBACK_BUFFER		: Constant :=	16#8C8E#;
+	GL_UNIFORM_BUFFER			: Constant :=	16#8A11#;
+
+	GL_FUNC_ADD				: Constant :=	16#8006#;
+	GL_MIN					: Constant :=	16#8007#;
+	GL_MAX					: Constant :=	16#8008#;
+	GL_FUNC_SUBTRACT			: Constant :=	16#800A#;
+	GL_FUNC_REVERSE_SUBTRACT		: Constant :=	16#800B#;
+	GL_SRC1_COLOR				: Constant :=	16#88F9#;
+	GL_ONE_MINUS_CONSTANT_ALPHA		: Constant :=	16#8004#;
+	GL_STREAM_DRAW				: Constant :=	16#88E0#;
+	GL_STREAM_READ				: Constant :=	16#88E1#;
+	GL_STREAM_COPY				: Constant :=	16#88E2#;
+	GL_STATIC_DRAW				: Constant :=	16#88E4#;
+	GL_STATIC_READ				: Constant :=	16#88E5#;
+	GL_STATIC_COPY				: Constant :=	16#88E6#;
+	GL_DYNAMIC_DRAW				: Constant :=	16#88E8#;
+	GL_DYNAMIC_READ				: Constant :=	16#88E9#;
+	GL_DYNAMIC_COPY				: Constant :=	16#88EA#;
 End Constants;
 Use Constants;
 
@@ -970,7 +1010,7 @@ Use Constants;
 	GREATER,	NOTEQUAL,	GEQUAL,		ALWAYS
 			 )	with size => Enum'Size;
 
-    Type Source_Factor is (
+    Type Scale_Factor is (
 		ZERO,
 		ONE,
 		SRC_COLOR,
@@ -985,7 +1025,9 @@ Use Constants;
 		CONSTANT_COLOR,
 		ONE_MINUS_CONSTANT_COLOR,
 		CONSTANT_ALPHA,
-		ONE_MINUS_CONSTANT_ALPHA
+		ONE_MINUS_CONSTANT_ALPHA,
+		SRC1_ALPHA,
+		SRC1_COLOR
 			  ) with Size => Enum'Size;
 
     -- Values prefixed with "OP_" to prevent clashes with keywords.
@@ -1889,6 +1931,51 @@ Use Constants;
 	T4F_C4F_N3F_V4F
 			      ) with Size => Enum'Size;
 
+    Type Query_Target is (
+	TIME_ELAPSED,
+	SAMPLES_PASSED,
+	ANY_SAMPLES_PASSED,
+	PRIMITIVES_GENERATED,
+	TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN,
+	ANY_SAMPLES_PASSED_CONSERVATIVE
+			 ) with Size => Enum'Size;
+
+    Type Buffers is (
+	ARRAY_BUFFER,
+	ELEMENT_ARRAY_BUFFER,
+	PIXEL_PACK_BUFFER,
+	PIXEL_UNPACK_BUFFER,
+	UNIFORM_BUFFER,
+	TEXTURE_BUFFER,
+	TRANSFORM_FEEDBACK_BUFFER,
+	COPY_READ_BUFFER,
+	COPY_WRITE_BUFFER,
+	DRAW_INDIRECT_BUFFER,
+	SHADER_STORAGE_BUFFER,
+	DISPATCH_INDIRECT_BUFFER,
+	ATOMIC_COUNTER_BUFFER
+			 ) with Size => Enum'Size;
+
+    Type Blend_Type is (
+	ADD,
+	MINIMUM,
+	MAXIMUM,
+	SUBTRACT,
+	REVERSE_SUBTRACT
+		       ) with Size => Enum'Size;
+
+    Type Usage_Pattern is (
+	STREAM_DRAW,
+	STREAM_READ,
+	STREAM_COPY,
+	STATIC_DRAW,
+	STATIC_READ,
+	STATIC_COPY,
+	DYNAMIC_DRAW,
+	DYNAMIC_READ,
+	DYNAMIC_COPY
+			  ) with SIZE => enum'Size;
+
 
 --------------------------------------------------------------------------------
 ----   REPRESENTATIONS	ALIASING TYPES RELATING TO CONSTANTS FOR ENUM.      ----
@@ -1905,7 +1992,7 @@ Use Constants;
 	ALWAYS		=> GL_ALWAYS
 			 );
 
-    For Source_Factor Use
+    For Scale_Factor Use
       (
 	ZERO			=>	0,
 	ONE			=>	1,
@@ -1921,7 +2008,9 @@ Use Constants;
 	CONSTANT_COLOR		=>	16#8001#,
 	ONE_MINUS_CONSTANT_COLOR=>	16#8002#,
 	CONSTANT_ALPHA		=>	16#8003#,
-	ONE_MINUS_CONSTANT_ALPHA=>	16#8004#
+	ONE_MINUS_CONSTANT_ALPHA=>	16#8004#,
+	SRC1_ALPHA		=>	GL_SRC1_ALPHA,
+	SRC1_COLOR		=>	GL_SRC1_COLOR
       );
 
     For Logic_Operators Use
@@ -2993,6 +3082,55 @@ Use Constants;
 	T4F_C4F_N3F_V4F		=> GL_T4F_C4F_N3F_V4F
       );
 
+    For Query_Target Use
+      (
+	SAMPLES_PASSED			=> GL_SAMPLES_PASSED,
+	ANY_SAMPLES_PASSED		=> GL_ANY_SAMPLES_PASSED,
+	ANY_SAMPLES_PASSED_CONSERVATIVE	=> GL_ANY_SAMPLES_PASSED_CONSERVATIVE,
+	PRIMITIVES_GENERATED		=> GL_PRIMITIVES_GENERATED,
+	TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN	=>       GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN,
+	TIME_ELAPSED			=> GL_TIME_ELAPSED
+      );
+
+    For Buffers Use
+      (
+	ARRAY_BUFFER			=> GL_ARRAY_BUFFER,
+	ELEMENT_ARRAY_BUFFER		=> GL_ELEMENT_ARRAY_BUFFER,
+	PIXEL_PACK_BUFFER		=> GL_PIXEL_PACK_BUFFER,
+	PIXEL_UNPACK_BUFFER		=> GL_PIXEL_UNPACK_BUFFER,
+	UNIFORM_BUFFER			=> GL_UNIFORM_BUFFER,
+	TEXTURE_BUFFER			=> GL_TEXTURE_BUFFER,
+	TRANSFORM_FEEDBACK_BUFFER	=> GL_TRANSFORM_FEEDBACK_BUFFER,
+	COPY_READ_BUFFER		=> GL_COPY_READ_BUFFER,
+	COPY_WRITE_BUFFER		=> GL_COPY_WRITE_BUFFER,
+	DRAW_INDIRECT_BUFFER		=> GL_DRAW_INDIRECT_BUFFER,
+	SHADER_STORAGE_BUFFER		=> GL_SHADER_STORAGE_BUFFER,
+	DISPATCH_INDIRECT_BUFFER	=> GL_DISPATCH_INDIRECT_BUFFER,
+	ATOMIC_COUNTER_BUFFER		=> GL_ATOMIC_COUNTER_BUFFER
+      );
+
+    For Blend_Type Use
+      (
+	Add				=> GL_FUNC_ADD,
+	Subtract			=> GL_FUNC_SUBTRACT,
+	Reverse_Subtract		=> GL_FUNC_REVERSE_SUBTRACT,
+	Minimum				=> GL_MIN,
+	Maximum				=> GL_MAX
+      );
+
+    For Usage_Pattern Use
+      (
+	STREAM_DRAW	=> GL_STREAM_DRAW,
+	STREAM_READ	=> GL_STREAM_READ,
+	STREAM_COPY	=> GL_STREAM_COPY,
+	STATIC_DRAW	=> GL_STATIC_DRAW,
+	STATIC_READ	=> GL_STATIC_READ,
+	STATIC_COPY	=> GL_STATIC_COPY,
+	DYNAMIC_DRAW	=> GL_DYNAMIC_DRAW,
+	DYNAMIC_READ	=> GL_DYNAMIC_READ,
+	DYNAMIC_COPY	=> GL_DYNAMIC_COPY
+      );
+
 
 --------------------------------------------------------------------------------
 ----   SUBTYPES		OPEN-GL TYPES RELATING TO THE CONSTANTS FOR ENUM.   ----
@@ -3000,6 +3138,8 @@ Use Constants;
 
     SubType RGBA is Chanel_Indices Range Chanel_Indices'Range;
     SubType RGB is RGBA Range Red..Green;
+
+    SubType Source_Factor is Scale_Factor Range Zero..ONE_MINUS_CONSTANT_ALPHA;
 
     SubType Destination_Factor is Source_Factor
 	with STATIC_PREDICATE => Destination_Factor /= SRC_ALPHA_SATURATE;
@@ -3056,6 +3196,13 @@ Use Constants;
 
     SubType Map2_Target is Map_Target Range MAP2_COLOR_4..MAP2_VERTEX_4;
 
+    SubType Texture_Number is Enum Range
+      GL_TEXTURE0..Enum'Max(
+			    GL_MAX_TEXTURE_COORDS - 1,
+			    GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS - 1);
+
+    SubType Drawing_Buffer_Number is Unsigned_Integer Range
+      0..Maximum_Draw_Buffers;
 
 --------------------------------------------------------------------------------
 ----   MATRICES/ARRAYS		OPEN-GL DEFINED ARRAY & MATRIX TYPES.	    ----
@@ -3152,40 +3299,28 @@ Private
     --		to/from the standard 32-bit IEEE Float. Fortionately they appear
     --		to be non-critical to the standarc/core OpenGL functions.
 
-    Type Mantissa_10 is New Natural Range 0..2**10-1;
-    For Mantissa_10'Size Use 10;
+    Type Mantissa_10 is New Natural Range 0..2**10-1 with Size => 10;
 
-    Type Mantissa_6 is Mod 2**6;
-    --New Natural Range 0..2**6-1;
-    For Mantissa_6'Size Use 6;
+    Type Mantissa_6 is Mod 2**6 with Size => 6;	--New Natural Range 0..2**6-1;
 
-    Type Mantissa_5 is Mod 2**5; --New Natural Range 0..2**5-1;
-    For Mantissa_5'Size Use 5;
+    Type Mantissa_5 is Mod 2**5 with Size => 5;	--New Natural Range 0..2**5-1;
 
-    Type Exponent_5 is Mod 2**5;
-    --New Natural Range 0..2**5-1;
-    For Exponent_5'Size Use 5;
+    Type Exponent_5 is Mod 2**5 with Size => 5;
 
     Type Float_10 is record
 	Mantissa : Mantissa_5;
 	Exponent : Exponent_5;
-    end record;
-    Pragma Pack(Float_10);
-    for Float_10'Size use 10;
+    end record with Pack, Size => 10;
 
     Type Float_11 is record
 	Mantissa : Mantissa_6;
 	Exponent : Exponent_5;
-    end record;
-    Pragma Pack(Float_11);
-    for Float_11'Size use 11;
+    end record with Pack, Size => 11;
 
     Type Half is record
 	Sign	 : Standard.Boolean;
 	Mantissa : Mantissa_10;
 	Exponent : Exponent_5;
-    end record;
-    pragma Pack(Half);
-    for Half'Size Use 16;
+    end record with Pack, Size => 16;
 
 End TAO_GL.Types;

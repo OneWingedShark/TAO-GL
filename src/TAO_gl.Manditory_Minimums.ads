@@ -1,0 +1,74 @@
+Package TAO_GL.Manditory_Minimums with Pure is
+
+--------------------------------------------------------------------------------
+----   MINIMUMS		OPEN-GL MANDITORY MINIMUMS FOR DIFFERENT OBJECTS.   ----
+--------------------------------------------------------------------------------
+
+    -- Gleaned from page for glGet specifications.
+    MM_VIEWPORT_SUBPIXEL_BITS			: Constant :=	   0;
+    MM_DUALSOURCE_DRAW_BUFFERS,
+    MM_COMBINED_VERTEX_UNIFORM_COMPONENTS,
+    MM_COMBINED_GEOMETRY_UNIFORM_COMPONENTS,
+    MM_COMBINED_COMPUTE_UNIFORM_COMPONENTS,
+    MM_COMBINED_FRAGMENT_UNIFORM_COMPONENTS	: Constant :=	   1;
+    MM_COMPRESSED_TEXTURE_FORMATS,
+    MM_FRAMEBUFFER_SAMPLES,
+    MM_SUBPIXEL_BITS				: Constant :=	   4;
+    MM_CLIP_DISTANCES,
+    MM_DRAW_BUFFERS,
+    MM_SHADER_STORAGE_BUFFER_BINDINGS		: Constant :=	   8;
+    MM_FRAGMENT_UNIFORM_BLOCKS,
+    MM_GEOMETRY_UNIFORM_BLOCKS,
+    MM_VERTEX_UNIFORM_BLOCKS			: Constant :=	  12;
+    MM_COMPUTE_UNIFORM_BLOCKS			: Constant :=	  14;
+    MM_GEOMETRY_TEXTURE_IMAGE_UNITS,
+    MM_TEXTURE_IMAGE_UNITS,
+    MM_VERTEX_ATTRIBS,
+    MM_VERTEX_TEXTURE_IMAGE_UNITS,
+    MM_VIEWPORTS				: Constant :=	  16;
+    MM_VARYING_FLOATS				: Constant :=	  32;
+    MM_COMBINED_UNIFORM_BLOCKS,
+    MM_UNIFORM_BUFFER_BINDINGS			: Constant :=	  36;
+    MM_COMBINED_TEXTURE_IMAGE_UNITS		: Constant :=	  48;
+    MM_VARYING_COMPONENTS			: Constant :=	  60;
+    MM_GEOMETRY_INPUT_COMPONENTS,
+    MM_VERTEX_OUTPUT_COMPONENTS,
+    MM_MIN_MAP_BUFFER_ALIGNMENT			: Constant :=	  64;
+    MM_FRAGMENT_INPUT_COMPONENTS,
+    MM_GEOMETRY_OUTPUT_COMPONENTS		: Constant :=	 128;
+    MM_ARRAY_TEXTURE_LAYERS,
+    MM_VERTEX_UNIFORM_VECTORS			: Constant :=	 256;
+    MM_COMPUTE_UNIFORM_COMPONENTS,
+    MM_CUBE_MAP_TEXTURE_SIZE,
+    MM_FRAGMENT_UNIFORM_COMPONENTS,
+    MM_GEOMETRY_UNIFORM_COMPONENTS,
+    MM_RECTANGLE_TEXTURE_SIZE,
+    MM_TEXTURE_SIZE,
+    MM_UNIFORM_LOCATIONS,
+    MM_VERTEX_UNIFORM_COMPONENTS		: Constant :=	1024;
+    MM_FRAMEBUFFER_LAYERS			: Constant :=	2048;
+    MM_UNIFORM_BLOCK_SIZE,
+    MM_FRAMEBUFFER_WIDTH,
+    MM_FRAMEBUFFER_HEIGHT			: Constant :=  16384;
+    MM_VIEWPORT_BOUNDS_RANGE_MIN		: Constant := -32768;
+    MM_VIEWPORT_BOUNDS_RANGE_MAX		: Constant :=  32767;
+    MM_TEXTURE_BUFFER_SIZE			: Constant :=  65536;
+
+
+    MM_MAX_PROGRAM_TEXEL_OFFSET			: Constant :=	   7;
+    MM_MIN_PROGRAM_TEXEL_OFFSET			: Constant :=	  -8;
+    MM_POINT_SIZE_RANGE_MAX			: Constant :=	 1.0;
+    MM_TEXTURE_LOD_BIAS				: Constant :=	 2.0;
+    MM_POINT_SIZE_RANGE_MIN			: Constant :=	Float'Succ(0.0);
+
+
+    -- Must be FRAGMENT_UNIFORM_COMPONENTS / 4.
+    MM_FRAGMENT_UNIFORM_VECTORS			: Constant :=	 256;
+    -- Must be VARYING_COMPONENTS / 4.
+    MM_VARYING_VECTORS				: Constant :=	  15;
+
+    -- Gleaned from page for glActiveTextures
+    MM_Textures					: Constant :=	  80;
+
+
+End TAO_GL.Manditory_Minimums;

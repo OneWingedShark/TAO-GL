@@ -16,6 +16,7 @@
 --  Varsion 0.3:	Added Types to eleminate incorrect enumeration params.
 --  Version 0.4:	Ensure proper linking, via the External_Name aspect.
 --  Version 0.5:	Addition of this comment, as well as several TODOs.
+--  Version 0.6:	Initial addition of the utility toolkit [GLUT] package.
 
 With Interfaces;
 

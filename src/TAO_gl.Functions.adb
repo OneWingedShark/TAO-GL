@@ -10,6 +10,7 @@ Use
 TAO_GL.Types;
 
 Package Body TAO_GL.Functions is
+    Type Jump_To_Mark;
 
     ------------------------------------------
     --  OPENGL API FUNCTION SPECIFICATIONS  --
@@ -685,7 +686,153 @@ Package Body TAO_GL.Functions is
 	with Import, Convention => stdcall, External_Name => "glDrawElements";
     procedure glInterleavedArrays (format : Enum; stride : Size; pointer : System.Address)
 	with Import, Convention => stdcall, External_Name => "glInterleavedArrays";
+-- VERSION 4.3 MARK
 
+    procedure glActiveTexture(texture : Enum)
+	with Import, Convention => stdcall, External_Name => "glActiveTexture";
+    procedure glAttachShader(program, shader : Unsigned_Integer)
+	with Import, Convention => stdcall, External_Name => "glAttachShader";
+    procedure glBeginQuery(Target : Query_Target; ID : Unsigned_Integer)
+	with Import, Convention => stdcall, External_Name => "glBeginQuery";
+    procedure glBindAttribLocation(Program,  Index  : Unsigned_Integer; Name : Access Character)
+	with Import, Convention => stdcall, External_Name => "glBindAttribLocation";
+    procedure glBindBuffer(Target : Enum; Buffer  : Unsigned_Integer)
+	with Import, Convention => stdcall, External_Name => "glBindBuffer";
+    procedure glBlendColor(Red, Green, Blue, Alpha : Types.Float)
+	with Import, Convention => stdcall, External_Name => "glBlendColor";
+    procedure glBlendEquation(mode : Enum)
+	with Import, Convention => stdcall, External_Name => "glBlendEquation";
+    procedure glBlendEquationi(buffer : Unsigned_Integer; mode : Enum)
+	with Import, Convention => stdcall, External_Name => "glBlendEquationi";
+    procedure glBlendEquationSeparate(Mode_RGB, Mode_Alpha : Enum)
+	with Import, Convention => stdcall, External_Name => "glBlendEquationSeparate";
+    procedure glBlendEquationSeparatei(buffer : Unsigned_Integer; Mode_RGB, Mode_Alpha : Enum)
+	with Import, Convention => stdcall, External_Name => "glBlendEquationSeparatei";
+    procedure glBlendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha : Enum)
+	with Import, Convention => stdcall, External_Name => "glBlendFuncSeparate";
+    procedure glBlendFuncSeparatei(buffer : Unsigned_Integer; srcRGB, dstRGB, srcAlpha, dstAlpha : Enum)
+	with Import, Convention => stdcall, External_Name => "glBlendFuncSeparate";
+    procedure glBufferData(target : Enum;  size : access Types.Size; data : System.Address; usage : Enum)
+	with Import, Convention => stdcall, External_Name => "glBufferData";
+    procedure glBufferSubData(Target : Enum; Offset : Access Types.Integer; Size : Access Types.Size; Data : System.Address)
+	with Import, Convention => stdcall, External_Name => "glBufferSubData";
+--    procedure glColorMask(red, green, blue, alpha : Types.Boolean)
+--	with Import, Convention => stdcall, External_Name => "glColorMask";
+    procedure glColorMaski(Buffer : Enum; Red, Green, Blue, Alpha : Types.Boolean)
+	with Import, Convention => stdcall, External_Name => "glColorMaski";
+  procedure glCompileShader(Shader : Unsigned_Integer)
+	with Import, Convention => stdcall, External_Name => "glCompileShader";
+
+
+
+
+--  glClearIndex
+--  glClientActiveTexture
+--  glColorSubTable
+--  glColorTableParameter
+Type Jump_To_Mark is null record;
+-- NOTE:	To be able to claim full OpenGL 4.3 the following functions
+--	 	need to be added and linked:
+--  glCompileShader
+--  glCompressedTexImage1D
+--  glCompressedTexImage3D
+--  glCompressedTexSubImage1D
+--  glCompressedTexSubImage2D
+--  glCompressedTexSubImage3D
+--  glConvolutionFilter1D
+--  glConvolutionFilter2D
+--  glConvolutionParameter
+--  glCopyColorSubTable
+--  glCopyColorTable
+--  glCopyConvolutionFilter1D
+--  glCopyConvolutionFilter2D
+--  glCopyTexSubImage3D
+--  glCreateProgram
+--  glCreateShader
+--  glDeleteBuffers
+--  glDeleteProgram
+--  glDeleteQueries
+--  glDeleteShader
+--  glDetachShader
+--  glDisable
+--  glDisableClientState
+--  glDisableVertexAttribArray
+--  glDrawRangeElements
+--  glEdgeFlagPointer
+--  glEnableVertexAttribArray
+--  glEnd
+--  glEndQuery
+--  glFogCoord
+--  glFogCoordPointer
+--  glGenBuffers
+--  glGenQueries
+--  glGetActiveAttrib
+--  glGetActiveUniform
+--  glGetAttachedShaders
+--  glGetAttribLocation
+--  glGetBufferParameteriv
+--  glGetBufferPointerv
+--  glGetBufferSubData
+--  glGetColorTable
+--  glGetColorTableParameter
+--  glGetCompressedTexImage
+--  glGetConvolutionFilter
+--  glGetConvolutionParameter
+--  glGetHistogram
+--  glGetHistogramParameter
+--  glGetMinmax
+--  glGetMinmaxParameter
+--  glGetPointerv
+--  glGetProgram
+--  glGetProgramInfoLog
+--  glGetQueryObject
+--  glGetQueryiv
+--  glGetSeparableFilter
+--  glGetShader
+--  glGetShaderInfoLog
+--  glGetShaderSource
+--  glGetUniform
+--  glGetUniformLocation
+--  glGetVertexAttrib
+--  glGetVertexAttribPointerv
+--  glHistogram
+--  glIndexPointer
+--  glIsBuffer
+--  glIsProgram
+--  glIsQuery
+--  glIsShader
+--  glLinkProgram
+--  glLoadTransposeMatrix
+--  glMapBuffer
+--  glMinmax
+--  glMultTransposeMatrix
+--  glMultiDrawArrays
+--  glMultiDrawElements
+--  glMultiTexCoord
+--  glPointParameter
+--  glPopAttrib
+--  glPopClientAttrib
+--  glPopMatrix
+--  glPopName
+--  glResetHistogram
+--  glResetMinmax
+--  glSampleCoverage
+--  glSecondaryColor
+--  glSecondaryColorPointer
+--  glSeparableFilter2D
+--  glShaderSource
+--  glStencilFuncSeparate
+--  glStencilMaskSeparate
+--  glStencilOpSeparate
+--  glTexCoordPointer
+--  glTexImage3D
+--  glTexSubImage3D
+--  glUniform
+--  glUnmapBuffer
+--  glValidateProgram
+--  glVertexAttrib
+--  glVertexAttribPointer
+--  glWindowPos
 
     --------------------------------------
     --  TYPE/ENUM CONVERSION FUNCTIONS  --
@@ -698,7 +845,7 @@ Package Body TAO_GL.Functions is
 	(Target => Enum, Source => Comparisions);
 
     Function Convert is new Ada.Unchecked_Conversion
-	(Target => Enum, Source => Source_Factor);
+	(Target => Enum, Source => Scale_Factor);
 
     Function Convert is new Ada.Unchecked_Conversion
 	(Target => Enum, Source => Logic_Operators);

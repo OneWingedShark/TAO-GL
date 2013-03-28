@@ -22,6 +22,8 @@ project TAO_GL is
    end Compiler;
 
    package Linker is
+      for Default_Switches ("ada") use ("-lopengl32", "-lglut32");
+      for Linker_Options use ( "--enable-stdcall-fixup");
    end Linker;
 
    package Builder is
