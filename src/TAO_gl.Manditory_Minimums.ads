@@ -6,6 +6,7 @@ Package TAO_GL.Manditory_Minimums with Pure is
 
     -- Gleaned from page for glGet specifications.
     MM_VIEWPORT_SUBPIXEL_BITS			: Constant :=	   0;
+    MM_COLOR_ATTACHMENTS,
     MM_DUALSOURCE_DRAW_BUFFERS,
     MM_COMBINED_VERTEX_UNIFORM_COMPONENTS,
     MM_COMBINED_GEOMETRY_UNIFORM_COMPONENTS,

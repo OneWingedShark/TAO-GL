@@ -989,6 +989,8 @@ Package Constants is
 	GL_DYNAMIC_DRAW				: Constant :=	16#88E8#;
 	GL_DYNAMIC_READ				: Constant :=	16#88E9#;
 	GL_DYNAMIC_COPY				: Constant :=	16#88EA#;
+
+	GL_MAX_COLOR_ATTACHMENTS		: Constant :=	16#8CDF#;
 End Constants;
 Use Constants;
 
@@ -3196,10 +3198,10 @@ Use Constants;
 
     SubType Map2_Target is Map_Target Range MAP2_COLOR_4..MAP2_VERTEX_4;
 
-    SubType Texture_Number is Enum Range
-      GL_TEXTURE0..Enum'Max(
-			    GL_MAX_TEXTURE_COORDS - 1,
-			    GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS - 1);
+--    SubType Texture_Number is Enum Range
+--      GL_TEXTURE0..Enum'Max(
+--			    GL_MAX_TEXTURE_COORDS - 1,
+--			    GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS - 1);
 
     SubType Drawing_Buffer_Number is Unsigned_Integer Range
       0..Maximum_Draw_Buffers;

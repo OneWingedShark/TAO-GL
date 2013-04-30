@@ -1111,7 +1111,7 @@ procedure InterleavedArrays (	format	: Array_Format_Type;
 				pointer	: System.Address);
 
 -- VERSION 4.3 MARK
---  procedure ActiveTexture( Texture : Texture_Number );
+-- procedure ActiveTexture( Texture : Texture_Number );
 --
 --  procedure AttachShader(program, shader : Unsigned_Integer)
 --  	with pre => Not Executing;
